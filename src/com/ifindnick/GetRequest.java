@@ -1,6 +1,5 @@
 package com.ifindnick;
 
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Vector;
 

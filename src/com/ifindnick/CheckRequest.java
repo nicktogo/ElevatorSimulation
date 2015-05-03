@@ -21,6 +21,7 @@ public class CheckRequest implements Observer {
 		// TODO Auto-generated method stub
 		requestList = (Vector<RequestPair>) arg;
 		System.out.println("get notify~");
+		System.out.println(requestList);
 	}
 	
 	//返回一个请求给main，让main来分派到子线程，//main要传电梯线程数组给这里！！！记住！！！
@@ -56,6 +57,7 @@ public class CheckRequest implements Observer {
 							minDistance = Math.abs(current-requestFloorNum);
 							best = i;
 							System.out.println("最佳电梯是" + best);
+							
 						}
 					}
 				}
