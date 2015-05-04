@@ -197,6 +197,15 @@ public class Main extends JFrame{
 	
 	private static JButton[] downButton = new JButton[] {down_2,down_3,down_4,down_5,down_6,down_7,down_8,down_9,down_10,down_11,down_12,down_13,down_14,down_15,down_16,down_17,down_18,down_19,down_20};
 	private static JButton[] upButton = new JButton[] {up_1,up_2,up_3,up_4,up_5,up_6,up_7,up_8,up_9,up_10,up_11,up_12,up_13,up_14,up_15,up_16,up_17,up_18,up_19};;
+	
+	private static Main mainThread = new Main();
+	
+	private static Main.Lift[] lift = new Main.Lift[] {mainThread.new Lift(lift1,lift1_Ctrl),
+			mainThread.new Lift(lift2,lift2_Ctrl),
+			mainThread.new Lift(lift3,lift3_Ctrl),
+			mainThread.new Lift(lift4,lift4_Ctrl),
+			mainThread.new Lift(lift5,lift5_Ctrl)};
+	
 
 	/**
 	 * Create the frame.
@@ -221,11 +230,29 @@ public class Main extends JFrame{
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					if(!(lift1_Ctrl.getSelectedItem().toString().equals("OPEN") 
 							|| lift1_Ctrl.getSelectedItem().toString().equals("CLOSE"))){
-						HandledPair pair = new HandledPair(Integer.parseInt(lift1_Ctrl.getSelectedItem().toString()),
-								0);
-						
-						
-					}
+							int object = Integer.parseInt(lift1_Ctrl.getSelectedItem().toString());//目标层
+							String state = lift[0].getState();//电梯状态
+							if(state.equals("UP") || state.equals("DOWN")){
+								if(object > lift[0].getCurrent()){
+									if(lift[0].getUpTask().add(object)){
+										System.out.println(object + "添加成功。");
+										System.out.println("UpTask里有：" + lift[0].getUpTask().size());
+									}
+								}else if(object < lift[0].getCurrent()){
+									if(lift[0].getDownTask().add(object)){
+										System.out.println(object + "添加成功。");
+									}
+								}
+							} else if(state.equals("STATIC")){
+								if(object > lift[0].getCurrent()){
+									lift[0].getUpTask().add(object);
+									lift[0].setState("UP");
+								}else if(object < lift[0].getCurrent()){
+									lift[0].getDownTask().add(object);
+									lift[0].setState("DOWN");
+								}
+							}
+						}
 				}
 			}
 		});
@@ -233,21 +260,145 @@ public class Main extends JFrame{
 		contentPane.add(lift1_Ctrl);
 		
 		lift2_Ctrl = new JComboBox<String>();
+		lift2_Ctrl.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					if(!(lift2_Ctrl.getSelectedItem().toString().equals("OPEN") 
+							|| lift2_Ctrl.getSelectedItem().toString().equals("CLOSE"))){
+							int object = Integer.parseInt(lift2_Ctrl.getSelectedItem().toString());//目标层
+							String state = lift[1].getState();//电梯状态
+							if(state.equals("UP") || state.equals("DOWN")){
+								if(object > lift[1].getCurrent()){
+									if(lift[1].getUpTask().add(object)){
+										System.out.println(object + "添加成功。");
+										System.out.println("UpTask里有：" + lift[1].getUpTask().size());
+									}
+								}else if(object < lift[1].getCurrent()){
+									if(lift[1].getDownTask().add(object)){
+										System.out.println(object + "添加成功。");
+									}
+								}
+							} else if(state.equals("STATIC")){
+								if(object > lift[1].getCurrent()){
+									lift[1].getUpTask().add(object);
+									lift[1].setState("UP");
+								}else if(object < lift[1].getCurrent()){
+									lift[1].getDownTask().add(object);
+									lift[1].setState("DOWN");
+								}
+							}
+						}
+				}
+			}
+		});
 		lift2_Ctrl.setBounds(302, 8, 98, 31);
 		lift2_Ctrl.setModel(new DefaultComboBoxModel<String>(new String[] {"OPEN","CLOSE","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
 		contentPane.add(lift2_Ctrl);
 		
 		lift3_Ctrl = new JComboBox<String>();
+		lift3_Ctrl.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					if(!(lift3_Ctrl.getSelectedItem().toString().equals("OPEN") 
+							|| lift3_Ctrl.getSelectedItem().toString().equals("CLOSE"))){
+							int object = Integer.parseInt(lift3_Ctrl.getSelectedItem().toString());//目标层
+							String state = lift[2].getState();//电梯状态
+							if(state.equals("UP") || state.equals("DOWN")){
+								if(object > lift[2].getCurrent()){
+									if(lift[2].getUpTask().add(object)){
+										System.out.println(object + "添加成功。");
+										System.out.println("UpTask里有：" + lift[2].getUpTask().size());
+									}
+								}else if(object < lift[2].getCurrent()){
+									if(lift[2].getDownTask().add(object)){
+										System.out.println(object + "添加成功。");
+									}
+								}
+							} else if(state.equals("STATIC")){
+								if(object > lift[2].getCurrent()){
+									lift[2].getUpTask().add(object);
+									lift[2].setState("UP");
+								}else if(object < lift[2].getCurrent()){
+									lift[2].getDownTask().add(object);
+									lift[2].setState("DOWN");
+								}
+							}
+						}
+				}
+			}
+		});
 		lift3_Ctrl.setBounds(401, 8, 98, 31);
 		lift3_Ctrl.setModel(new DefaultComboBoxModel<String>(new String[] {"OPEN","CLOSE","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
 		contentPane.add(lift3_Ctrl);
 		
 		lift4_Ctrl = new JComboBox<String>();
+		lift4_Ctrl.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					if(!(lift4_Ctrl.getSelectedItem().toString().equals("OPEN") 
+							|| lift4_Ctrl.getSelectedItem().toString().equals("CLOSE"))){
+							int object = Integer.parseInt(lift4_Ctrl.getSelectedItem().toString());//目标层
+							String state = lift[3].getState();//电梯状态
+							if(state.equals("UP") || state.equals("DOWN")){
+								if(object > lift[3].getCurrent()){
+									if(lift[3].getUpTask().add(object)){
+										System.out.println(object + "添加成功。");
+										System.out.println("UpTask里有：" + lift[3].getUpTask().size());
+									}
+								}else if(object < lift[3].getCurrent()){
+									if(lift[3].getDownTask().add(object)){
+										System.out.println(object + "添加成功。");
+									}
+								}
+							} else if(state.equals("STATIC")){
+								if(object > lift[3].getCurrent()){
+									lift[3].getUpTask().add(object);
+									lift[3].setState("UP");
+								}else if(object < lift[3].getCurrent()){
+									lift[3].getDownTask().add(object);
+									lift[3].setState("DOWN");
+								}
+							}
+						}
+				}
+			}
+		});
 		lift4_Ctrl.setBounds(500, 8, 98, 31);
 		lift4_Ctrl.setModel(new DefaultComboBoxModel<String>(new String[] {"OPEN","CLOSE","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
 		contentPane.add(lift4_Ctrl);
 		
 		lift5_Ctrl = new JComboBox<String>();
+		lift5_Ctrl.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					if(!(lift5_Ctrl.getSelectedItem().toString().equals("OPEN") 
+							|| lift5_Ctrl.getSelectedItem().toString().equals("CLOSE"))){
+							int object = Integer.parseInt(lift5_Ctrl.getSelectedItem().toString());//目标层
+							String state = lift[4].getState();//电梯状态
+							if(state.equals("UP") || state.equals("DOWN")){
+								if(object > lift[4].getCurrent()){
+									if(lift[4].getUpTask().add(object)){
+										System.out.println(object + "添加成功。");
+										System.out.println("UpTask里有：" + lift[4].getUpTask().size());
+									}
+								}else if(object < lift[4].getCurrent()){
+									if(lift[4].getDownTask().add(object)){
+										System.out.println(object + "添加成功。");
+									}
+								}
+							} else if(state.equals("STATIC")){
+								if(object > lift[4].getCurrent()){
+									lift[4].getUpTask().add(object);
+									lift[4].setState("UP");
+								}else if(object < lift[4].getCurrent()){
+									lift[4].getDownTask().add(object);
+									lift[4].setState("DOWN");
+								}
+							}
+						}
+				}
+			}
+		});
 		lift5_Ctrl.setBounds(599, 8, 98, 31);
 		lift5_Ctrl.setModel(new DefaultComboBoxModel<String>(new String[] {"OPEN","CLOSE","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
 		contentPane.add(lift5_Ctrl);
@@ -1376,12 +1527,12 @@ public class Main extends JFrame{
 	 */
 	public static void main(String[] args) {
 		
-		Main mainThread = new Main();
-		Main.Lift[] lift = new Main.Lift[] {mainThread.new Lift(lift1,lift1_Ctrl),
-				mainThread.new Lift(lift2,lift2_Ctrl),
-				mainThread.new Lift(lift3,lift3_Ctrl),
-				mainThread.new Lift(lift4,lift4_Ctrl),
-				mainThread.new Lift(lift5,lift5_Ctrl)};
+//		Main mainThread = new Main();
+//		Main.Lift[] lift = new Main.Lift[] {mainThread.new Lift(lift1,lift1_Ctrl),
+//				mainThread.new Lift(lift2,lift2_Ctrl),
+//				mainThread.new Lift(lift3,lift3_Ctrl),
+//				mainThread.new Lift(lift4,lift4_Ctrl),
+//				mainThread.new Lift(lift5,lift5_Ctrl)};
 		
 		for (Lift lift2 : lift) {
 			Thread thread = new Thread(lift2);
@@ -1506,9 +1657,11 @@ public class Main extends JFrame{
 							} else if(state.equals("DOWN")){
 								DownTask.remove();
 							}
-							currentTask.poll();//从任务中去除这一层
+//							currentTask.poll();//从任务中去除这一层
 							
 							System.out.println("currentTask里还剩：" + currentTask.size());
+							System.out.println("UpTask里还剩：" + UpTask.size());
+							System.out.println("DwonTask里还剩：" + DownTask.size());
 						}
 						
 						if(!currentTask.isEmpty()){
@@ -1525,9 +1678,28 @@ public class Main extends JFrame{
 								current--;
 							}
 						} else{
-							state = "STATIC";//任务队列为空则置为停止状态
+							if(state.equals("UP")){
+								if(!DownTask.isEmpty()){
+									currentTask = DownTask;
+									state = "DOWN";
+								} else if(!UpTask.isEmpty()){
+									currentTask = UpTask;
+								} else{
+									state = "STATIC";//两个任务队列都为空，则置为停止状态
+								}
+							} else if(state.equals("DOWN")){
+								if(!UpTask.isEmpty()){
+									currentTask = UpTask;
+									state = "UP";
+								} else if(!DownTask.isEmpty()){
+									currentTask = DownTask;
+								} else{
+									state = "STATIC";//两个任务队列都为空，则置为停止状态
+									lift_Ctrl.setSelectedItem("OPEN");
+								}
+							} 
 						}
-					} else{
+					} else{//在有电梯的楼层按下UP、DOWN按钮的情况
 						if(current == 20){
 							downButton[18].setBackground(Color.WHITE);
 						} else if(current == 1){
