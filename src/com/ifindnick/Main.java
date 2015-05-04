@@ -1,7 +1,6 @@
 package com.ifindnick;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -1599,7 +1598,7 @@ public class Main extends JFrame{
 		private PriorityBlockingQueue<Integer> currentTask;//电梯当前任务，为UpTask或DownTask中一个，由state决定
 		private JProgressBar[] lift;//楼层指示
 		private Timer timer;//电梯的定时器
-		private JComboBox<String> lift_Ctrl;
+		private JComboBox<String> lift_ctrl;
 		
 		public Lift(JProgressBar[] lift,JComboBox<String> lift_Ctrl){
 			state = "STATIC";
@@ -1614,7 +1613,7 @@ public class Main extends JFrame{
 			
 			this.lift = lift;
 			
-			this.lift_Ctrl = lift_Ctrl;
+			this.lift_ctrl = lift_Ctrl;
 			
 			timer = new Timer(1*1000, new ActionListener(){
 
@@ -1695,7 +1694,7 @@ public class Main extends JFrame{
 									currentTask = DownTask;
 								} else{
 									state = "STATIC";//两个任务队列都为空，则置为停止状态
-									lift_Ctrl.setSelectedItem("OPEN");
+									lift_ctrl.setSelectedItem("OPEN");
 								}
 							} 
 						}
