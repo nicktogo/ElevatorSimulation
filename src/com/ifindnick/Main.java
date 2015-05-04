@@ -1642,15 +1642,6 @@ public class Main extends JFrame{
 						System.out.println("Running~");
 						if(currentTask.peek() != null && current == currentTask.peek()){//检查是否到了任务中的第一个
 							
-							if(current == 20){
-								downButton[18].setBackground(Color.WHITE);
-							} else if(current == 1){
-								upButton[0].setBackground(Color.WHITE);
-							} else {
-								upButton[current-1].setBackground(Color.WHITE);
-								downButton[current-2].setBackground(Color.WHITE);
-							}
-							
 							if(state.equals("UP")){
 								UpTask.remove();
 							} else if(state.equals("DOWN")){
@@ -1666,14 +1657,25 @@ public class Main extends JFrame{
 						if(!currentTask.isEmpty()){
 							lift[current-1].setValue(0);//离开当前层，取消颜色
 							
+							if(current == 20){
+								downButton[18].setBackground(Color.WHITE);
+							} else if(current == 1){
+								upButton[0].setBackground(Color.WHITE);
+							} else {
+								upButton[current-1].setBackground(Color.WHITE);
+								downButton[current-2].setBackground(Color.WHITE);
+							}
+							
 							//到达上/下一层
 							if(state == "UP"){
-								if(current != 20){
+								if(current < 20){
 									lift[current++].setValue(1);
 								}
 							}
 							else if(state == "DOWN"){
-								lift[current-2].setValue(1);
+								if(current > 1){
+									lift[current-2].setValue(1);
+								}
 								current--;
 							}
 						} else{
